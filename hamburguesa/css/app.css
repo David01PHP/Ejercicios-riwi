@@ -1,0 +1,23 @@
+.oscuro{
+    background-color: #151515c1;
+}
+.oscuro .container .row .card{
+    background-color: black;
+ 
+
+}
+.oscuro .container .row .card p{
+    color: white;
+}
+.oscuro .container .row .card h2{
+    color: white;
+}
+
+
+.p{
+    margin-bottom: 77px;
+}
+
+.p2{
+    margin-bottom: 55px;
+}

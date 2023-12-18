@@ -1,0 +1,36 @@
+.contenedor{
+    margin-right: 100px;
+     margin-left: 700px;
+     margin-top: 50px;
+}
+
+.body{
+    background-image: url('./../images/fondo_login.avif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.body2{
+    background-image: url('./../images/rosa2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.galeria{
+    background-image: url('./../images/home.avif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card2{
+    width: 18rem;
+}
+.none{
+    display: none;
+}
+
+h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+span{
+    color: blue;
+}

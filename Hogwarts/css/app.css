@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Arbutus&display=swap');
+.body{
+    background-image: url("./../img/fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.boton{
+margin-left: 700px;
+margin-top: 400px;
+font-size: 5rem;
+font-family: 'Arbutus', serif;
+background-color: brown;
+width: 480px;
+border-radius: 20px;
+padding: 10px;
+text-decoration: none;
+color: black;
+}
+.boton::hover{
+color: aqua;
+}
+
+.main{
+    background-image: url("./../img/fondo2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.color{
+    border: 1px solid black;
+    color: aliceblue;
+    width: 40rem;
+    padding: 10px;
+    background-color: rgba(0, 0, 255, 0.411);
+    margin-left: 38rem;
+}
