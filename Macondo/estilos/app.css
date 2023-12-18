@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    background-color: rgba(83, 88, 88, 0.801);
+    width: 100%;
+    height: 120px;
+    color: rgb(39, 209, 209);
+}
+.fondo{
+    background-image: url("./../img/fondo.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.imagen img{
+    padding: 10px;
+    height: 100px;
+}
+
+.botonCompra{
+    width: 100px;
+    height: 50px;
+
+}
+.buttonMovie{
+    padding: 20px;
+}

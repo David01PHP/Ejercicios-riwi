@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones</title>
+    <link rel="stylesheet" href="./css/app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body class="body">
+    
+     <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                  <div class="card">
+                    <div class="card-body">
+                         <form action="" >
+                            <div class="form-group mt-3">
+                                 <label for="">Operacion</label>
+                                 <select name="" id="operacion" class="form-select">
+                                    <option value=""  selected disabled>Seleccionar...</option>
+                                    <option value="suma">Suma</option>
+                                    <option value="resta">Resta</option>
+                                    <option value="multi">Multiplicacion</option>
+                                    <option value="divi">Division</option>
+                                 </select>
+                                 <span id="respuesta-1" class='invalid-feedback'></span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="">Numero 1</label>
+                                <input type="text" class="form-control" id="num1" >
+                                <span id="respuesta-2" class='invalid-feedback'></span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="">Numero 2</label>
+                                <input type="text" class="form-control" id="num2" >
+                                <span id="respuesta-3" class='invalid-feedback'></span>
+                            </div>
+                       
+                         </form>
+                         <button type="button" onclick="operacion()" class="btn btn-primary mt-3 w-100">Operar</button>
+                    </div>
+                  </div>
+                  <div class="alert alert-success mt-4" >
+                     El resultado de la operacion <label for="" id="lbresultado"></label>
+                  </div>
+            </div>
+        </div>
+     </div>
+    <script src="./js/app.js"></script>
+</body>
+</html>
