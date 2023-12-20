@@ -1,4 +1,4 @@
-const estudiante = {
+let estudiante = {
   nombre: "",
   edad: "",
   familia: "",
@@ -20,46 +20,50 @@ const clases = {
 };
 
 // Paso 4
-function casa(estudiante) {
+function casa() {
+
   if ((estudiante.cualidades.includes("Valor") ||
     estudiante.cualidades.includes("Fuerza") ||
     estudiante.cualidades.includes("Audacia")) &&
-    (estudiante.linaje === "Mestizo" ||
-    estudiante.linaje === "Muggle" ||
-    estudiante.linaje === "Sangre pura")) {
-
+    (estudiante.linaje === "3" ||
+    estudiante.linaje === "2" ||
+    estudiante.linaje === "1")) {
+    console.log("Gryffindor")
     estudiante.casa = "Gryffindor";
-
+    
   } else if ((estudiante.cualidades.includes("Justicia") ||
     estudiante.cualidades.includes("Lealtad") ||
     estudiante.cualidades.includes("Paciencia")) &&
-    (estudiante.linaje === "Mestizo" ||
-    estudiante.linaje === "Muggle")) {
-
+    (estudiante.linaje === "3" ||
+    estudiante.linaje === "2")) {
+      console.log("Hufflepuff")
     estudiante.casa = "Hufflepuff";
 
   } else if (
     (estudiante.cualidades.includes("Creatividad") ||
     estudiante.cualidades.includes("Erudición") ||
     estudiante.cualidades.includes("Inteligencia")) &&
-    (estudiante.linaje === "Mestizo" ||
-    estudiante.linaje === "Muggle" ||
-    estudiante.linaje === "Sangre pura")) {
-
+    (estudiante.linaje === "3" ||
+    estudiante.linaje === "2" ||
+    estudiante.linaje === "1")) {
+      console.log("Ravenclaw")
     estudiante.casa = "Ravenclaw";
 
   } else if (
     (estudiante.cualidades.includes("Ambición") ||
     estudiante.cualidades.includes("Determinación") ||
     estudiante.cualidades.includes("Astucia")) &&
-    estudiante.linaje === "Sangre Pura") {
-
+    estudiante.linaje === "1") {
+      console.log("Slytherin")
     estudiante.casa = "Slytherin";
 
+  }else{
+      console.log("funciona else")    
   }
-  console.log(estudiante.casa);
+
+  console.log("sadsad",estudiante);
 }
-casa(estudiante);
+
 
 // Paso 5
 class ClaseTransformaciones{
@@ -102,10 +106,24 @@ function generarAnimalPatronus(){
   estudiante.animalPatronus = defensaContraLasArtesOscuras[animalSeleccionado];
 
   console.log(estudiante);
-
+sessionStorage.setItem('casa', estudiante.casa);
 }
 generarAnimalPatronus();
-
+if (casa == "Gryffindor"){
+  document.getElementById('casa').classList.add('gryffindor');
+  document.getElementById('titulo').innerText = "Gryffindor";
+} else if (casa == "Hufflepuff"){
+  document.getElementById('titulo').innerText = "Hufflepuff";
+  document.getElementById('casa').classList.add('hufflepuff');
+} else if (casa == "Ravenclaw"){
+  document.getElementById('titulo').innerText = "Ravenclaw";
+  document.getElementById('casa').classList.add('ravenclaw');
+}else if (casa == "Slytherin"){
+  document.getElementById('titulo').innerText = "Slytherin";
+  document.getElementById('casa').classList.add('slytherin');
+} else {
+  console.log("no se que casa darte vuelve a intentarlo");
+}
 //paso 6
 class ClaseDefensaArtesOscuras{
   constructor(boggartpresente,nombreProfesor, horario){
@@ -132,11 +150,6 @@ dementor();
 
 
 console.log(estudiante);
-/////////////////////////////////////////////////
-/***********************************************/
-/*esto para abajo ignoralo es de parte del html*/
-/***********************************************/
-/////////////////////////////////////////////////
 
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -168,7 +181,7 @@ let edad = document.getElementById('edad');
 let linaje = document.getElementById('linaje');
 let cualidades = document.getElementById('cualidades');
 
-if (linaje != "" && cualidades != 0 ){
+if (linaje.value != "" && cualidades.value != 0 ){
   estudiante.linaje  = linaje.value;
   estudiante.nombre = nombre.value;
   estudiante.edad = edad.value;
@@ -187,17 +200,15 @@ if (linaje != "" && cualidades != 0 ){
   } else if (cualidades.value == 4) {
     cualidades = ["Ambición", "Determinación", "Astucia"];
     estudiante.cualidades = cualidades;
-  } else {
-    console.log("noestas haciendo nd aun");
-  }
-  casa(estudiante);
-  console.log(estudiante);
+  } 
+  casa();
+
   sessionStorage.setItem('casa', estudiante.casa);
   sessionStorage.setItem('auth', 1);
 }
 
 
-window.location.href="./casa.html";
+window.location.href = "casa.html";
 
 }
 
