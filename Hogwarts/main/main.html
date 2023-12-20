@@ -17,55 +17,55 @@
             El nombre es obligatorio
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           <label for="edad" class="form-label">Edad</label>
           <input type="text" class="form-control" id="edad" value="21" required>
           <div class="valid-feedback">
             La edad es obligatoria
           </div>
         </div>
-        <div class="col-md-4">
-            <label for="padre" class="form-label">Padre</label>
-            <input type="text" class="form-control" placeholder="Padre" id="padre" aria-describedby="inputGroupPrepend" required>
+        <div class="col-md-6">
+            <label for="familia" class="form-label">Familia</label>
+            <input type="text" class="form-control" placeholder="familia" id="familia" aria-describedby="inputGroupPrepend" value="Riwi" required>
             <div class="invalid-feedback">
               El nombre de padre es obligatorio
             </div>
         </div>
-        <div class="col-md-6">
-              <label for="madre" class="form-label">madre</label>
-              <input type="text" class="form-control" placeholder="Madre" id="madre" aria-describedby="inputGroupPrepend" required>
-              <div class="invalid-feedback">
-                El nombre de la madre es obligatorio
-              </div>
-          </div>
-          <div class="col-md-6">
-            <label for="linaje" class="form-label">linaje</label>
-            <input type="text" class="form-control" placeholder="linaje" value="Mestizo" id="linaje" aria-describedby="inputGroupPrepend" required>
+          <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">linaje</label>
+            <select class="form-select" aria-label="Default select example" id="linaje" required>
+              <option value="0" selected>Selecciona linaje</option>
+              <option value="1">sangre pura</option>
+              <option value="2">moggle </option>
+              <option value="3">mestizo</option>
+              
+            </select>
             <div class="invalid-feedback">
               El linaje es obligatorio
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label for="casa" class="form-label">casa</label>
             <input type="text" class="form-control" placeholder="casa" id="casa" aria-describedby="inputGroupPrepend"  disabled>
             <div class="invalid-feedback">
               El nombre de padre es obligatorio
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label for="animal" class="form-label">animal Patronus</label>
             <input type="text" class="form-control" placeholder="Animal" id="animal" aria-describedby="inputGroupPrepend" disabled>
             <div class="invalid-feedback">
               El nombre de padre es obligatorio
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
           <label for="validationCustom02" class="form-label">animal Patronus</label>
-          <select class="form-select" aria-label="Default select example" id="cualidades">
-            <option selected>Selecciona cualidades</option>
+          <select class="form-select" aria-label="Default select example" id="cualidades" required>
+            <option value="0" selected>Selecciona cualidades</option>
             <option value="1">Creatividad, Erudicion, Inteligencia</option>
             <option value="2">Valos, Fuerza, Audacia </option>
             <option value="3">Justicia, Lealtad, paciencia</option>
+            <option value="4">Ambición,Determinación,Astucia</option>
           </select>
             <div class="invalid-feedback">
               Las cualidades son obligatorio

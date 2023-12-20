@@ -1,11 +1,11 @@
 const estudiante = {
-  nombre: "David",
-  edad: 21,
-  familia: ["Elianis", "Nelson"],
-  linaje: "Mestizo",
+  nombre: "",
+  edad: "",
+  familia: "",
+  linaje: "",
   casa: "",
   animalPatronus: "",
-  cualidades: ["Creatividad", "Erudición", "Inteligencia"],
+  cualidades: ""
 };
 
 //2
@@ -132,6 +132,12 @@ dementor();
 
 
 console.log(estudiante);
+/////////////////////////////////////////////////
+/***********************************************/
+/*esto para abajo ignoralo es de parte del html*/
+/***********************************************/
+/////////////////////////////////////////////////
+
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
@@ -155,13 +161,43 @@ console.log(estudiante);
 })()
 
 //funcion para registrar
-
 function registrar(){
-  let nombre = document.getElementById('nombre');
-  let edad = document.getElementById('edad0');
-  let linaje = document.getElementById('linaje');
-  let cualidades = document.getElementById('cualidades');
+let familia  = document.getElementById('familia');
+let nombre = document.getElementById('nombre');
+let edad = document.getElementById('edad');
+let linaje = document.getElementById('linaje');
+let cualidades = document.getElementById('cualidades');
+
+if (linaje != "" && cualidades != 0 ){
+  estudiante.linaje  = linaje.value;
+  estudiante.nombre = nombre.value;
+  estudiante.edad = edad.value;
+  estudiante.familia = familia.value;
+  
+  
+  if (cualidades.value == 1) {
+    cualidades = ["Creatividad", "Erudicion", "Inteligencia"];
+    estudiante.cualidades = cualidades;
+  } else if (cualidades.value == 2) {
+    cualidades = ["Valor", "Fuerza", "Audacia"];
+    estudiante.cualidades = cualidades;
+  } else if (cualidades.value == 3) {
+    cualidades = ["Justicia", "Lealtad", "Paciencia"];
+    estudiante.cualidades = cualidades;
+  } else if (cualidades.value == 4) {
+    cualidades = ["Ambición", "Determinación", "Astucia"];
+    estudiante.cualidades = cualidades;
+  } else {
+    console.log("noestas haciendo nd aun");
+  }
+  casa(estudiante);
+  console.log(estudiante);
+  sessionStorage.setItem('casa', estudiante.casa);
+  sessionStorage.setItem('auth', 1);
+}
 
 
+window.location.href="./casa.html";
 
 }
+
