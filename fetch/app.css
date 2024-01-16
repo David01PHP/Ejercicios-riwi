@@ -1,0 +1,36 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.search{
+    width: 300px;
+    width: 98%;
+    margin-right: 100px;
+    margin-top: 100px;
+
+}
+
+
+
+
+
+body{
+    background-image: url("./img/code2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.row{
+
+    background-color: rgba(0, 0, 0, 0.084);
+    padding: 5px;
+    width: 100%;
+}
+
+.formulario{
+    color: aliceblue;
+    background-color: rgba(25, 21, 21, 0.745);
+
+    height: 10%;
+
+}

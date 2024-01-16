@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+  </div>
+  <!-- contenedor-->
+  <div class="contenedor">
+    <!--contiene el input de busqueda-->
+
+      <!--cabecera -->
+    
+ 
+      <div class="row">
+     
+        <div class="formulario col-md-3">
+
+          
+          
+          <div class="mb-3 m-2 ">
+            <label for="nombre" class="form-label">nombre</label>
+            <input type="text" class="form-control" id="nombre_add">
+          </div>
+          <div class="mb-3 m-2">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email_add" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3 m-2">
+            <label for="password" class="form-label">Password</label>
+            <input type="text" class="form-control" id="password_add">
+          </div>
+          <div class="mb-3 m-2">
+            <button type="button" class="btn btn-primary" onclick="agregar()">agregar</button>
+          </div>
+        </div>
+        <div class="lista col-md-9">
+             <div class="search m-4">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="buscar()" id="params">
+          </div>
+          <div class="card">
+            <div class="row" id="root">
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">nombre</label>
+                <input type="text" class="form-control" id="nombre">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer" id="botones">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+  <script>
+
+
+    function agregar() {
+
+      let nombre = document.getElementById("nombre_add");
+      let email = document.getElementById("email_add");
+      let password = document.getElementById("password_add");
+
+      let data = {
+        name: nombre.value,
+        email: email.value,
+        password: password.value
+
+      }
+      fetch("https://memin.io/public/api/v2/users", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(respuesta => {
+          console.log(respuesta);
+        })
+
+    }
+
+
+    //en la variable 'root' se carga la card de cadea uno
+    var root = document.getElementById("root");
+    //metodo que muestrao los datos en las card.
+    function mostrarTodos() {
+      //fech es la funcion que nos ayuda a acceder ala api
+      fetch("https://memin.io/public/api/v2/users")
+        .then(result => {
+          //el primer then retornamos la api con un formato api.json
+          return result.json()
+        }).then(res => {
+          //en el segundo then esta la logica que damos.
+
+          /*en estes forEach rescorremos cada uno de los datos
+          *de la data  para poder acceder a cada uno */
+
+          // el parametro element es igual que decir que es la data le damos un nombre de la base de datos.
+          res.data.forEach(function (element) {
+            //contenedor de la card
+            let col = document.createElement('div');
+            col.classList.add("col-md-3");
+            root.appendChild(col)
+
+            //esto es la card
+            let card = document.createElement("div");
+            card.classList.add("card");
+            col.appendChild(card);
+
+            //cuerpo de la card
+            let card_body = document.createElement("div");
+            card_body.classList.add("card-body");
+            card.appendChild(card_body)
+
+            //parrafo donde decimos que el texto del mismo es igual al nombre desde la base de datos
+            let p = document.createElement("p");
+            p.innerText = "NOMBRE :  " + element.name;
+            card_body.appendChild(p);
+
+            //segundo parrafo para el correo
+            let p2 = document.createElement("p");
+            p2.innerText = "EMAIL: " + element.email;
+            card_body.appendChild(p2);
+
+
+            //boton para eliminar
+            let button = document.createElement("button");
+            button.classList.add("btn", "btn-danger");
+            button.setAttribute("id", "eliminar");
+            /*
+            *con setAttribute le damos un evento onclick, mandamos el metodos y
+            * mandamos como parametro el id consultado con la. respuesta EJEMPLO : element.id = data.id;
+            */
+            button.setAttribute("onclick", `eliminar(${element.id})`);
+            button.innerText = "Eliminar";
+            card_body.appendChild(button);
+
+            //Boton de mostrar la data por id en un modal
+            let button_detalles = document.createElement("button");
+            button_detalles.classList.add("btn", "btn-info", "p-2");
+            //esto hace que el modal se muestre son atributos de boostrap
+            button_detalles.setAttribute("data-bs-toggle", "modal");
+            button_detalles.setAttribute("data-bs-target", "#exampleModal");
+            button_detalles.setAttribute("onclick", `mostrar(${element.id})`);
+            button_detalles.innerText = "Ver detalles";
+            card_body.appendChild(button_detalles);
+
+          });
+        });
+    }
+
+
+    /*busca coincidencias*/
+    function buscar() {
+
+      //input de busqueda
+      let param = document.getElementById('params');
+      //funcion fech y concatenamos el valor del input pra consultar
+      fetch("https://memin.io/public/api/v2/users/search/" + param.value, {
+        //metodo Get para consultar
+        method: "GET"
+      }).then(result => {
+        //respuesta de la data en formato.json
+        return result.json()
+      })
+        .then(result => {
+
+          //result es la variable que tiene la respuesta o la data  accedemos a ella con result.
+
+          //if es para validar si esta vacio o no tiene errores pero no afecta al funcionamiento.
+          if (param.value != "") {
+            //vaciamos las card para que no se dupliquen los resultados y solo busque la ultima consulta.
+            document.getElementById('root').innerHTML = "";
+            // forEach parametro baseDato
+            result.forEach(function (element) {
+              //contenedor de la card
+              let col = document.createElement('div');
+              col.classList.add("col-md-3");
+              root.appendChild(col)
+
+              //esto es la card
+              let card = document.createElement("div");
+              card.classList.add("card");
+              col.appendChild(card);
+
+              //cuerpo de la card
+              let card_body = document.createElement("div");
+              card_body.classList.add("card-body");
+              card.appendChild(card_body)
+
+              //parrafo donde decimos que el texto del mismo es igual al nombre desde la base de datos
+              let p = document.createElement("p");
+              p.innerText = "NOMBRE :  " + element.name;
+              card_body.appendChild(p);
+
+              //segundo parrafo para el correo
+              let p2 = document.createElement("p");
+              p2.innerText = "EMAIL: " + element.email;
+              card_body.appendChild(p2);
+
+
+              //boton para eliminar
+              let button = document.createElement("button");
+              button.classList.add("btn", "btn-danger");
+              button.setAttribute("id", "eliminar");
+              /*
+              *con setAttribute le damos un evento onclick, mandamos el metodos y
+              * mandamos como parametro el id consultado con la. respuesta EJEMPLO : element.id = data.id;
+              */
+              button.setAttribute("onclick", `eliminar(${element.id})`);
+              button.innerText = "Eliminar";
+              card_body.appendChild(button);
+
+              //Boton de mostrar la data por id en un modal
+              let button_detalles = document.createElement("button");
+              button_detalles.classList.add("btn", "btn-info", "p-2");
+              //esto hace que el modal se muestre son atributos de boostrap
+              button_detalles.setAttribute("data-bs-toggle", "modal");
+              button_detalles.setAttribute("data-bs-target", "#exampleModal");
+              button_detalles.setAttribute("onclick", `mostrar(${element.id})`);
+              button_detalles.innerText = "Ver detalles";
+              card_body.appendChild(button_detalles);
+
+            });
+          } else {
+            //metodo que muestra rodas las card
+            mostrarTodos();
+          }
+
+
+
+
+
+        })
+    }
+
+    /*funcion que elimina datos por id*/
+    function eliminar(id) {
+      // forEach 
+      fetch("https://memin.io/public/api/v2/users/" + id,
+        //metodo eliminar
+        { method: "DELETE", })
+        //el primer then tiene la respuesta, respuesta si no hay errores elimina y muestra los datos que quedan
+        .then(response => {
+
+          //muestra los datos restantes 
+          mostrarTodos()
+        })
+        //si hay errores lo imprime en consola
+        .catch(err => console.log(err))
+    }
+
+    /* funcion que muestra por id */
+    function mostrar(id) {
+      fetch("https://memin.io/public/api/v2/users/" + id, {
+        //metodo Get para consultar
+        method: "GET"
+      })
+        .then(result => {
+          //es la data en formato.json
+          return result.json()
+        }).then(data => {
+          //iguala el valor del parrafo por los datos consultados (data.name o  data.email)
+          document.getElementById('nombre').value = data.name;
+          document.getElementById('email').value = data.email;
+
+          // esto sirve para eliminar o limpiar un boton ya que esta en un ciclo se duplicaba
+          //haces la prueba y vera eliminando la linea 267
+          botones.innerHTML = "";
+          let button_actualizar = document.createElement("button");
+          button_actualizar.classList.add("btn", "btn-warning");
+          //evento click por donde ejecutamos el metodo actualizar
+          button_actualizar.setAttribute("onclick", `actualizar(${data.id})`);
+          button_actualizar.setAttribute("id", "pruebaCambio");
+          button_actualizar.innerText = "actualizar";
+          botones = document.getElementById("botones");
+          botones.appendChild(button_actualizar);
+
+        });
+    }
+
+    /*actualiza por id*/
+    function actualizar(id) {
+
+      //valores del los input del formulacio que aparece en el modal
+      let nombre = document.getElementById('nombre').value;
+      let correo = document.getElementById('email').value;
+      //objeto que se agrega al JSON igualdos con el valor del input
+      datos_nuevos = {
+        name: nombre,
+        email: correo
+      }
+
+      //funcion fetch y concatenamos el id 
+      fetch("https://memin.io/public/api/v2/users/" + id, {
+        //metodo PUT  actualiza datos 
+        method: "PUT",
+        //contenido 
+        headers: {
+          "Content-Type": "application/json",
+        },
+        //mandamos al body de JSON y con stringify agregamos a la base de datos(JSON)
+        body: JSON.stringify(datos_nuevos)
+      })
+        .then(resultado => {
+          //Retornamos la data en formato.json
+          return resultado.json()
+        })
+        /*cuerpo de then la logica pero no es necesario en este caso*/
+        .then(data => {
+        })
+        //por si falla algo
+        .catch((err) => console.log(err))
+
+    }
+
+    //muestra la data en cards 
+    mostrarTodos();
+
+    /*Disculpe la demora lo que no entienda pregunte 👍🤜🏾🤛🏾*/
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
